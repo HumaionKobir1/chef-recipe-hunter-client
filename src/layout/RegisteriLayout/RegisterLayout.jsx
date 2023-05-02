@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from '../../share/Header/Header';
+import Navbar from '../../share/Navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../share/Footer/Footer';
 
-const Main = () => {
+const RegisterLayout = () => {
     return (
         <div>
-            <Header></Header>
-            <div>
+            <Navbar></Navbar>
+            <div className='min-h-[calc(100vh-400px)]'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>
@@ -15,4 +15,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default RegisterLayout;

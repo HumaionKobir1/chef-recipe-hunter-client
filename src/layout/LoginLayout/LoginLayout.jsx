@@ -1,18 +1,16 @@
 import React from 'react';
-import Header from '../../share/Header/Header';
+import Navbar from '../../share/Navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../share/Footer/Footer';
 
-const Main = () => {
+const LoginLayout = () => {
     return (
         <div>
-            <Header></Header>
-            <div>
-                <Outlet></Outlet>
-            </div>
+            <Navbar></Navbar>
+            <Outlet></Outlet>
             <Footer></Footer>
         </div>
     );
 };
 
-export default Main;
+export default LoginLayout;
