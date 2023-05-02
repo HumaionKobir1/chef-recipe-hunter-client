@@ -2,8 +2,29 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            <p><small>all right reserved</small></p>
+        <div className=' bg-indigo-950'>
+            <div className='w-5/6 mx-auto grid md:grid-cols-3 grid-cols-1 md:py-20 py-5'>
+                <div className='border-b-2 pb-3 md:pb-0 md:border-e-2 text-white '>
+                    <h3 className='text-3xl mb-5'>Subscribe</h3>
+                    <p className='mb-4'>Register and get notified about all the news & updates before it gets too late.</p>
+                    <input className='rounded p-3' type="text" placeholder='Enter Your Email' /> <button className='btn bg-orange-400 border-none'>Sign up</button>
+                </div>
+                <div className='border-b-2 md:border-e-2 pb-3 md:pb-0 text-white md:px-20'>
+                    <h3 className='text-3xl mb-5'>Explore</h3>
+                    <p>Submit a Recipe</p>
+                    <p className='my-2'>Our Chefs</p>
+                    <p className='my-2'>Latest News</p>
+                    <p>Contact</p>
+
+                </div>
+                <div className=' text-white md:px-20'>
+                    <h3 className='text-3xl mb-5'>Contact</h3>
+                    <p className='my-2'>787 Mark View Street, New Town, California</p>
+                    <p>needhelp@thatix.com</p>
+                    <p className='my-2'>666 888 0000</p>
+                </div>
+            </div>
+            <p className='text-center text-white p-2 -mt-5'><small>All rights reserved THATIX</small></p>
         </div>
     );
 };

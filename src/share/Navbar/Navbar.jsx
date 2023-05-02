@@ -12,7 +12,7 @@ const Navbar = () => {
 
     return (
         <div className='w-full md:w-5/6 mx-auto'>
-        <div className='px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8'>
+        <div className=' py-5 mx-auto '>
             <div className='relative flex items-center justify-between'>
                 {/* Logo Section */}
                 <Link to='/' className='inline-flex items-center'>
@@ -49,7 +49,7 @@ const Navbar = () => {
                 </ul>
 
                 <Link to='/login' className='inline-flex md:block items-center'>
-                <button className='btn'>Login</button>
+                <button className='btn bg-orange-400 border-none'>Login</button>
                 </Link>
 
                 {/* Mobile Navbar Section */}
