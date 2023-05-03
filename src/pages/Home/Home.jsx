@@ -1,9 +1,10 @@
 import React from 'react';
+import Category from '../../share/Category/Category';
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home</h1>
+            <Category></Category>
         </div>
     );
 };
