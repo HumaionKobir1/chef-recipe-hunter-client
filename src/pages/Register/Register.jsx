@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
+import { Result } from 'postcss';
 
 const Register = () => {
+    const {createUser} = useContext(AuthContext);
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleShowPassword = event => {
@@ -16,6 +20,13 @@ const Register = () => {
         const password = form.password.value;
         const photoUrl = form.photo.value;
         console.log(name, email, password, photoUrl);
+
+        createUser(email, password)
+        .then(result => {
+            const createUser = result.user;
+            console.log(createUser);
+        })
+        .catch(error => console.log(error));
 
         
     }
