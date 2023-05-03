@@ -10,13 +10,17 @@ import { FaUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
-    const {user, profileUpdate} = useContext(AuthContext);
+    const {user, profileUpdate, logOut} = useContext(AuthContext);
     console.log(profileUpdate);
-
-    
-
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     
+    const handleSignOut = () => {
+        logOut()
+        .then(()=>{})
+        .catch(error =>{
+            console.log(error.message);
+        })
+    }
 
     return (
         <div className='w-full md:w-5/6 mx-auto px-3'>
@@ -57,10 +61,10 @@ const Navbar = () => {
                 </ul>
 
                 <div className='flex justify-center items-center gap-3'>
-                    {user && <FaUserCircle style={{fontSize: '3rem'}}/>}
+                    {user && <img className='w-11 h-11 rounded-full' src={user.photoURL} title={user.displayName}  alt="" /> }
                     
                     {user ? 
-                    <button className='btn bg-orange-400 border-none'>Logout</button> :
+                    <button onClick={handleSignOut} className='btn bg-orange-400 border-none'>Logout</button> :
 
                     <Link to='/login' className='inline-flex md:block items-center'>
                     <button className='btn bg-orange-400 border-none'>Login</button>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import { Result } from 'postcss';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const {createUser} = useContext(AuthContext);
@@ -25,6 +26,7 @@ const Register = () => {
         const password = form.password.value;
         const photoUrl = form.photo.value;
         console.log(name, email, password, photoUrl);
+        
 
         // validate
         if(!/(?=.*[A-Z])/.test(password)){
@@ -43,13 +45,28 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             const createUser = result.user;
+            console.log(createUser)
             setSuccess('User has create successfully')
+            updateUserData(result.user, name, photoUrl)
         })
         .catch(error => {
             setError((error.message).slice(10, 50))
         });
 
         
+    }
+    
+    const updateUserData = (user, name, photoUrl) => {
+        updateProfile(user, {
+            displayName: name,
+            photoURL: photoUrl
+        })
+        .then(()=>{
+            console.log('user name updated')
+        })
+        .catch(error => {
+            setError((error.message).slice(10, 50))
+        })
     }
 
     return (
