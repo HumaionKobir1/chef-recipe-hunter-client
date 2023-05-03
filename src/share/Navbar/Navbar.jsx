@@ -10,8 +10,11 @@ import { FaUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
-    const {user} = useContext(AuthContext);
-    console.log(user);
+    const {user, profileUpdate} = useContext(AuthContext);
+    console.log(profileUpdate);
+
+    
+
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     
 

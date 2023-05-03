@@ -7,7 +7,8 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext);
+    const {signIn, signInWithGoogle} = useContext(AuthContext);
+
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
@@ -37,6 +38,18 @@ const Login = () => {
     const handleShowPassword = event => {
         setShowPassword(event.target.checked);
         
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+        .then(result => {
+            const loggedUser =result.user;
+            setSuccess('Login Successful');
+            console.log(loggedUser)
+        })
+        .catch(error => {
+            setError((error.message).slice(10, 50))
+        })
     }
 
     return (
@@ -76,7 +89,7 @@ const Login = () => {
 
             <div className=' text-center md:w-[35%] w-full rounded mx-auto mt-5 border-2 hover:bg-slate-300 py-2 flex gap-3 justify-center items-center'>
                 <img className='w-6 h-6' src={google} alt="" />
-                <button>  Continue with Google</button>
+                <button onClick={handleGoogleSignIn}>  Continue with Google</button>
             </div>
             <div className='text-center md:w-[35%] w-full rounded mx-auto mt-1 border-2 hover:bg-slate-300 py-2 flex gap-3 justify-center items-center'>
                 <FaGithub></FaGithub> 
