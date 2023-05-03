@@ -5,9 +5,13 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
+import { AuthContext } from '../../provider/AuthProvider';
+import { FaUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
+    const {user} = useContext(AuthContext);
+    console.log(user);
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     
 
@@ -49,9 +53,17 @@ const Navbar = () => {
                 
                 </ul>
 
-                <Link to='/login' className='inline-flex md:block items-center'>
-                <button className='btn bg-orange-400 border-none'>Login</button>
-                </Link>
+                <div className='flex justify-center items-center gap-3'>
+                    {user && <FaUserCircle style={{fontSize: '3rem'}}/>}
+                    
+                    {user ? 
+                    <button className='btn bg-orange-400 border-none'>Logout</button> :
+
+                    <Link to='/login' className='inline-flex md:block items-center'>
+                    <button className='btn bg-orange-400 border-none'>Login</button>
+                    </Link>
+                    }
+                </div>
 
                 {/* Mobile Navbar Section */}
                 <div className='lg:hidden '>

@@ -4,9 +4,20 @@ import { Link } from 'react-router-dom';
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
 
-
     const handleShowPassword = event => {
         setShowPassword(event.target.checked);
+    }
+
+    const handleRegister = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photoUrl = form.photo.value;
+        console.log(name, email, password, photoUrl);
+
+        
     }
 
     return (
@@ -14,7 +25,7 @@ const Register = () => {
 
             <h4 className='text-3xl font-semibold mb-5 text-center'>Please Register</h4>
 
-            <form className='w-80 mx-auto'>
+            <form onSubmit={handleRegister} className='w-80 mx-auto'>
                 <div className='mb-4'>
                     <label htmlFor="text" className="block text-gray-700 font-bold mb-2">Your name</label>
                     <input className='mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
