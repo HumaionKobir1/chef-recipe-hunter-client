@@ -5,6 +5,8 @@ import { Result } from 'postcss';
 
 const Register = () => {
     const {createUser} = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -13,6 +15,9 @@ const Register = () => {
     }
 
     const handleRegister = event =>{
+
+        setSuccess('')
+        setError('')
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -21,12 +26,28 @@ const Register = () => {
         const photoUrl = form.photo.value;
         console.log(name, email, password, photoUrl);
 
+        // validate
+        if(!/(?=.*[A-Z])/.test(password)){
+            setError('Please add at least one uppercase character');
+            return;
+        }
+        else if(!/(?=.*[0-9].*[0-9.])/.test(password)){
+            setError('please add at least two numbers');
+            return;
+        }
+        // else if (password.length<6){
+        //     setError('please add at least 6 characters in your password')
+        //     return;
+        // }
+
         createUser(email, password)
         .then(result => {
             const createUser = result.user;
-            console.log(createUser);
+            setSuccess('User has create successfully')
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            setError((error.message).slice(10, 50))
+        });
 
         
     }
@@ -79,8 +100,8 @@ const Register = () => {
                 
 
                 <div className='text-center mt-4 mb-4'>
-                    <p className='text-lg font-medium text-red-900'></p>
-                    <p className='text-lg font-medium text-green-800'></p>
+                    <p className='text-lg font-medium text-red-900'>{error}</p>
+                    <p className='text-lg font-medium text-green-800'>{success}</p>
                 </div>
 
                 <div className="flex justify-start -mt-5">

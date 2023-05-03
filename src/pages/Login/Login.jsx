@@ -8,9 +8,16 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
     const {signIn} = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = event => {
+
+        setSuccess('')
+        setError('')
+
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
@@ -20,8 +27,11 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            setSuccess('Login successfully')
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            setError("Email and Password doesn't match ")
+        })
     }
 
     const handleShowPassword = event => {
@@ -48,8 +58,8 @@ const Login = () => {
                 </div>
 
                 <div className='text-center mt-2 mb-6'>
-                    <p className='text-lg font-medium text-red-900'></p>
-                    <p className='text-lg font-medium text-green-800'></p>
+                    <p className='text-lg font-medium text-red-900'>{error}</p>
+                    <p className='text-lg font-medium text-green-800'>{success}</p>
                 </div>
                 <div className="flex items-center justify-between">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
