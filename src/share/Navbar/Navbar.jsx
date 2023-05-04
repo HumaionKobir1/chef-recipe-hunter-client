@@ -11,7 +11,6 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
     const {user, profileUpdate, logOut} = useContext(AuthContext);
-    console.log(profileUpdate);
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     
     const handleSignOut = () => {
