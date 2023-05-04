@@ -11,6 +11,7 @@ import LoginLayout from '../layout/LoginLayout/LoginLayout';
 import Register from '../pages/Register/Register';
 import RegisterLayout from '../layout/RegisteriLayout/RegisterLayout';
 import Chefs from '../share/Chefs/Chefs';
+import ErrorPage from '../pages/Error/ErrorPage';
 
   const router = createBrowserRouter([
     {
@@ -36,6 +37,7 @@ import Chefs from '../share/Chefs/Chefs';
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: '/',
