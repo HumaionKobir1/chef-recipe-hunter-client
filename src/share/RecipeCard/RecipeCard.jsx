@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import Rating from 'react-rating';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 
 
 const RecipeCard = ({recipe}) => {
@@ -24,9 +26,18 @@ const RecipeCard = ({recipe}) => {
             <h3 className="text-lg font-medium">Cooking Method:</h3>
             <p className="mt-1">{instructions}</p>
             </div>
-            <div className="mt-2">
+            <div className="mt-3">
             <h3 className="text-lg font-medium">Rating:</h3>
-            <p className="mt-1">{rating.number}</p>
+            <div className='flex text-center gap-1'>
+                
+            <Rating
+            placeholderRating={rating.number}
+            emptySymbol={<FaRegStar></FaRegStar>}
+            placeholderSymbol={<FaStar className='text-warning'></FaStar>}
+            fullSymbol={<FaStar></FaStar>}
+            />
+                <span>{rating.number}</span>
+            </div>
             </div>
         </div>
         <div className="px-4 py-2 bg-gray-100">
