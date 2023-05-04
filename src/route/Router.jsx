@@ -10,6 +10,7 @@ import Login from '../pages/Login/Login';
 import LoginLayout from '../layout/LoginLayout/LoginLayout';
 import Register from '../pages/Register/Register';
 import RegisterLayout from '../layout/RegisteriLayout/RegisterLayout';
+import Chefs from '../share/Chefs/Chefs';
 
   const router = createBrowserRouter([
     {
@@ -38,7 +39,8 @@ import RegisterLayout from '../layout/RegisteriLayout/RegisterLayout';
       children: [
         {
             path: '/',
-            element: <Home></Home>
+            element: <Home></Home>,
+            loader: () => fetch(`http://localhost:5000/chefs`)
         }
       ]
     },
