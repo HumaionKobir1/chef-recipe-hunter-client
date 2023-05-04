@@ -14,6 +14,8 @@ import Chefs from '../share/Chefs/Chefs';
 import ErrorPage from '../pages/Error/ErrorPage';
 import ChefRecipe from '../pages/ChefRecipe/ChefRecipe';
 import PrivateRoute from './PrivateRoute';
+import Blog from '../pages/Blog';
+import BlogLayout from '../layout/BlogLayout/BlogLayout';
 
   const router = createBrowserRouter([
     {
@@ -37,6 +39,16 @@ import PrivateRoute from './PrivateRoute';
       ]
     },
     {
+      path: '/blog',
+      element: <BlogLayout></BlogLayout>,
+      children: [
+        {
+          path: '/blog',
+          element: <Blog></Blog>
+        }
+      ]
+    },
+    {
       path: "/",
       element: <Main></Main>,
       errorElement: <ErrorPage></ErrorPage>,
@@ -44,7 +56,7 @@ import PrivateRoute from './PrivateRoute';
         {
             path: '/',
             element: <Home></Home>,
-            loader: () => fetch(`http://localhost:5000/chefs`)
+            loader: () => fetch(`https://chef-recipe-hunter-server-humaionkobir341-gmailcom.vercel.app/chefs`)
         },
         {
           path: '/chefs/:id',
@@ -52,8 +64,9 @@ import PrivateRoute from './PrivateRoute';
           <PrivateRoute>
             <ChefRecipe></ChefRecipe>
             </PrivateRoute> ,
-          loader: ({params}) => fetch(`http://localhost:5000/chefs/${params.id}`)
-        }
+          loader: ({params}) => fetch(`https://chef-recipe-hunter-server-humaionkobir341-gmailcom.vercel.app/chefs/${params.id}`)
+        },
+        
       ]
     },
   ]);

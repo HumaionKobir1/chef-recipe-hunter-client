@@ -3,11 +3,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import google from '../../images/google.png'
 import { FaBeer, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../provider/AuthProvider';
+import { GithubAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '../../firebase/firebase.config';
+
 
 
 
 const Login = () => {
-    const {signIn, signInWithGoogle} = useContext(AuthContext);
+    const {signIn, signInWithGoogle, signInWithGithub} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -31,7 +34,7 @@ const Login = () => {
         signIn(email, password)
         .then(result => {
             const loggedUser = result.user;
-            navigate(form, {replace: true})
+            navigate(from, {replace: true})
             setSuccess('Login successfully')
         })
         .catch(error => {
@@ -45,11 +48,28 @@ const Login = () => {
     }
 
     const handleGoogleSignIn = () => {
+        setError('')
         signInWithGoogle()
         .then(result => {
             const loggedUser =result.user;
-            setSuccess('Login Successful');
             console.log(loggedUser)
+            setSuccess('Login Successful');
+        })
+        .catch(error => {
+            setError((error.message).slice(10, 50))
+        })
+    }
+
+    const auth =getAuth(app)
+    const githubProvider = new GithubAuthProvider();
+
+    const handleGithubSignIn = () => {
+        setError('')
+        signInWithPopup(auth, githubProvider)
+        .then(result => {
+            const loggedUser2 =result.user;
+            console.log(loggedUser2)
+            setSuccess('Login Successful');
         })
         .catch(error => {
             setError((error.message).slice(10, 50))
@@ -97,7 +117,7 @@ const Login = () => {
             </div>
             <div className='text-center md:w-[35%] w-full rounded mx-auto mt-1 border-2 hover:bg-slate-300 py-2 flex gap-3 justify-center items-center'>
                 <FaGithub></FaGithub> 
-                <button>Continue with Github</button>
+                <button onClick={handleGithubSignIn}>Continue with Github</button>
             </div>
 
         </div>
