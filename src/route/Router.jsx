@@ -12,6 +12,8 @@ import Register from '../pages/Register/Register';
 import RegisterLayout from '../layout/RegisteriLayout/RegisterLayout';
 import Chefs from '../share/Chefs/Chefs';
 import ErrorPage from '../pages/Error/ErrorPage';
+import ChefRecipe from '../pages/ChefRecipe/ChefRecipe';
+import PrivateRoute from './PrivateRoute';
 
   const router = createBrowserRouter([
     {
@@ -43,6 +45,14 @@ import ErrorPage from '../pages/Error/ErrorPage';
             path: '/',
             element: <Home></Home>,
             loader: () => fetch(`http://localhost:5000/chefs`)
+        },
+        {
+          path: '/chefs/:id',
+          element: 
+          <PrivateRoute>
+            <ChefRecipe></ChefRecipe>
+            </PrivateRoute> ,
+          loader: ({params}) => fetch(`http://localhost:5000/chefs/${params.id}`)
         }
       ]
     },
