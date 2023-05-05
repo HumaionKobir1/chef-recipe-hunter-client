@@ -39,6 +39,9 @@ const Navbar = () => {
                 <li>
                     <ActiveLink to="/blog">Blog</ActiveLink>
                 </li>
+                <li>
+                    <ActiveLink to="/about">About</ActiveLink>
+                </li>
                 {/* <li>
                     <NavLink
                     to='/login'

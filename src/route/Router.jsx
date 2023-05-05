@@ -16,6 +16,8 @@ import ChefRecipe from '../pages/ChefRecipe/ChefRecipe';
 import PrivateRoute from './PrivateRoute';
 import Blog from '../pages/Blog';
 import BlogLayout from '../layout/BlogLayout/BlogLayout';
+import AboutLayout from '../layout/AboutLayout/AboutLayout';
+import About from '../pages/About/About';
 
   const router = createBrowserRouter([
     {
@@ -45,6 +47,16 @@ import BlogLayout from '../layout/BlogLayout/BlogLayout';
         {
           path: '/blog',
           element: <Blog></Blog>
+        }
+      ]
+    },
+    {
+      path: '/about',
+      element: <AboutLayout></AboutLayout>,
+      children: [
+        {
+          path: '/about',
+          element: <About></About>
         }
       ]
     },
