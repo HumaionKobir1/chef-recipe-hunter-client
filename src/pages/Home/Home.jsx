@@ -2,6 +2,7 @@ import React from 'react';
 import Category from '../../share/Category/Category';
 import Chefs from '../../share/Chefs/Chefs';
 import { useLoaderData } from 'react-router-dom';
+import MessageForm from '../../share/MessageForm/MessageForm';
 
 const Home = () => {
     const chefs = useLoaderData()
@@ -24,6 +25,7 @@ const Home = () => {
                     }
                 </div>
             </div>
+            <MessageForm></MessageForm>
         </div>
     );
 };

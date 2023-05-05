@@ -18,6 +18,7 @@ import Blog from '../pages/Blog';
 import BlogLayout from '../layout/BlogLayout/BlogLayout';
 import AboutLayout from '../layout/AboutLayout/AboutLayout';
 import About from '../pages/About/About';
+import RecipeLayout from '../layout/RecipeLayout/RecipeLayout';
 
   const router = createBrowserRouter([
     {
@@ -37,6 +38,20 @@ import About from '../pages/About/About';
         {
           path: '/register',
           element: <Register></Register>
+        }
+      ]
+    },
+    {
+      path: '/chefs/:id',
+      element: <RecipeLayout></RecipeLayout>,
+      children: [
+        {
+          path: '/chefs/:id',
+          element: 
+          <PrivateRoute>
+            <ChefRecipe></ChefRecipe>
+            </PrivateRoute> ,
+          loader: ({params}) => fetch(`https://chef-recipe-hunter-server-humaionkobir341-gmailcom.vercel.app/chefs/${params.id}`)
         }
       ]
     },
@@ -70,14 +85,7 @@ import About from '../pages/About/About';
             element: <Home></Home>,
             loader: () => fetch(`https://chef-recipe-hunter-server-humaionkobir341-gmailcom.vercel.app/chefs`)
         },
-        {
-          path: '/chefs/:id',
-          element: 
-          <PrivateRoute>
-            <ChefRecipe></ChefRecipe>
-            </PrivateRoute> ,
-          loader: ({params}) => fetch(`https://chef-recipe-hunter-server-humaionkobir341-gmailcom.vercel.app/chefs/${params.id}`)
-        },
+        
         
       ]
     },
