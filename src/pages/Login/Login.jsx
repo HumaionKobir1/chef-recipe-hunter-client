@@ -28,7 +28,7 @@ const Login = () => {
 
         event.preventDefault()
         const form = event.target;
-        const email = form.email.value;
+        const email = from.email.value;
         const password = form.password.value;
 
         signIn(email, password)
@@ -53,6 +53,8 @@ const Login = () => {
         .then(result => {
             const loggedUser =result.user;
             console.log(loggedUser)
+            navigate(from, {replace: true})
+
             setSuccess('Login Successful');
         })
         .catch(error => {
@@ -68,7 +70,7 @@ const Login = () => {
         signInWithPopup(auth, githubProvider)
         .then(result => {
             const loggedUser2 =result.user;
-            console.log(loggedUser2)
+            navigate(from, {replace: true})
             setSuccess('Login Successful');
         })
         .catch(error => {
