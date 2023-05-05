@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/24/solid'
 import { AuthContext } from '../../provider/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa';
+import ActiveLink from '../ActiveLink/ActiveLink';
 
 
 const Navbar = () => {
@@ -33,20 +34,10 @@ const Navbar = () => {
                 {/* Nav Items Section */}
                 <ul className='items-center hidden space-x-8 lg:flex text-lg'>
                 <li>
-                    <NavLink
-                    to='/'
-                    className={({ isActive }) => (isActive ? 'active' : 'default')}
-                    >
-                    Home
-                    </NavLink>
+                    <ActiveLink to='/'>Home</ActiveLink>
                 </li>
                 <li>
-                    <NavLink
-                    to='/blog'
-                    className={({ isActive }) => (isActive ? 'active' : 'default')}
-                    >
-                    Blog
-                    </NavLink>
+                    <ActiveLink to="/blog">Blog</ActiveLink>
                 </li>
                 {/* <li>
                     <NavLink
